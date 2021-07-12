@@ -10,7 +10,7 @@ class WordCounter extends Component {
             page: {
                 id: '',
                 page: 0,
-                text: '',
+                paragraph: '',
                 title: '',
                 total_pages: 0
             },
@@ -58,7 +58,7 @@ class WordCounter extends Component {
     }
 
     render() {
-        const {page, title, text, total_pages} = this.state.page;
+        const {page, title, paragraph, total_pages} = this.state.page;
         let nextPageButton;
         if (total_pages > 1) {
             nextPageButton = <Navigation onPageChanged={this.handleViewPage} totalRecords={total_pages} actual={page}/>
@@ -73,7 +73,7 @@ class WordCounter extends Component {
                         Página {page}
                     </div>
                 </div>
-                <p>{text}</p>
+                <p>{paragraph}</p>
                 {nextPageButton}
                 {this.state.page.page > 0 && !this.state.loading &&
                 <RankingWords id={this.state.page.id} page={this.state.page.page}/>
