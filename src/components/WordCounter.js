@@ -50,7 +50,7 @@ class WordCounter extends Component {
                         <h2>{title}</h2>
                     </div>
                     <div className="col-sm-4 text-end">
-                        {total_pages} Páginas
+                        Página {page}
                     </div>
                 </div>
                 <p>{text}</p>
