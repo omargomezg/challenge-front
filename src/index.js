@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.css';
+import WordCounter from "./components/WordCounter";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <WordCounter />
   </React.StrictMode>,
   document.getElementById('root')
 );
