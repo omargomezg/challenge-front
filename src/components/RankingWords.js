@@ -21,7 +21,6 @@ class RankingWords extends Component {
     }
 
     reloadRanking(value) {
-        console.log(value);
         this.setState({size: value});
         this.handleGetRanking(value);
     }

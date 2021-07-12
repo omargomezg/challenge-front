@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {API_URL} from '../constants/Constant';
 import RankingWords from "./RankingWords";
+import Navigation from "./Navigation";
 
 class WordCounter extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class WordCounter extends Component {
             loading: true
         }
         this.handleNextPage = this.handleNextPage.bind(this);
+        this.handleViewPage = this.handleViewPage.bind(this);
     }
 
     componentDidMount() {
@@ -24,6 +26,20 @@ class WordCounter extends Component {
             .then((data) => {
                 this.setState({page: data, loading: false})
             });
+    }
+
+    handleViewPage(pagination) {
+        this.setState({loading: true}, () => {
+            const {id} = this.state.page;
+            fetch(API_URL + 'word-counter/text?' + new URLSearchParams({
+                id: id,
+                page: pagination.currentPage
+            }))
+                .then((response) => response.json())
+                .then((data) => {
+                    this.setState({page: data, loading: false});
+                });
+        });
     }
 
     handleNextPage() {
@@ -44,10 +60,8 @@ class WordCounter extends Component {
     render() {
         const {page, title, text, total_pages} = this.state.page;
         let nextPageButton;
-        if (page !== total_pages) {
-            nextPageButton = <div className="text-end">
-                <button className="btn btn-light" onClick={this.handleNextPage}>Ver página {page + 1} de {total_pages}</button>
-            </div>
+        if (total_pages > 1) {
+            nextPageButton = <Navigation onPageChanged={this.handleViewPage} totalRecords={total_pages} actual={page}/>
         }
         return (
             <div>
