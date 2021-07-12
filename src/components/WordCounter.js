@@ -1,11 +1,18 @@
 import React, {Component} from "react";
 import {API_URL} from '../constants/Constant';
+import RankingWords from "./RankingWords";
 
 class WordCounter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: {}
+            page: {
+                id: '',
+                page: 0,
+                text: '',
+                title: '',
+                total_pages: 0
+            }
         }
         this.handleNextPage = this.handleNextPage.bind(this);
         this.handleWordRanking = this.handleWordRanking.bind(this);
@@ -55,6 +62,9 @@ class WordCounter extends Component {
                 </div>
                 <p>{text}</p>
                 {nextPageButton}
+                {this.state.page.page > 0 &&
+                <RankingWords id={this.state.page.id} page={this.state.page.page}/>
+                }
             </div>
         );
     }
