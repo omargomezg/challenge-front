@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import {API_URL} from "../constants/Constant";
-import FilterView from "./filterView";
+import FilterView from "./FilterView";
 
 class RankingWords extends Component {
 
